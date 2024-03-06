@@ -1,0 +1,16 @@
+[Unit]
+Description=special Workaholic bot for job announcements
+After=syslog.target
+
+[Service]
+Type=simple
+User=lh
+Group=lh
+WorkingDirectory=/opt/ococl
+ExecStart=/opt/ococl/bot.py
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
