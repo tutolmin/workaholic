@@ -20,11 +20,11 @@ async def start(event):
 
 @bot.on(events.NewMessage)
 async def echo(event):
-    """Forward only text messages."""
-    # Check if the message has text content
-    if event.text:
-        # Forward only if it's a text message
-        await event.forward_to(-616817594)
+    """Echo the user message."""
+#    await event.respond( 'Message has been forwarded successfully.')
+#    await event.respond(event.text)
+#    await bot.send_message(-616817594, event.text)
+    await event.forward_to(-616817594)
 
 def main():
     """Start the bot."""
