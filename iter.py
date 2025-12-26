@@ -16,14 +16,20 @@ message_hashes = ['b12f0faf0297b88cfc934d7bfac21f12','f8534821f227bfbd684298541b
 with TelegramClient('anon', api_id, api_hash) as client:
 
     for message in client.iter_messages(1001417778781,reverse=False):
+      if message.photo and 474122935 == message.from_id.user_id:
+        print('Image from Alex')
+      if 474122935 == message.from_id.user_id:           # Alexander      
+        print('Alex: ', message.date, ' ', message.message)
       if re.search( r'\u2757\d?\d:\d\d\ ?-\ ?\d?\d:\d\d\ \d', str(message.message)): 
         print(message.date, ' ', message.message)
 
         if re.search( r'RHEL\s?\+\s?Veritas', str(message.message), re.IGNORECASE) or \
-          re.search( r'АУ АС', str(message.message), re.IGNORECASE):
+          re.search( r'Veritas\s?\+\s?RHEL', str(message.message), re.IGNORECASE) or \
+          re.search( r'АУ АС', str(message.message), re.IGNORECASE) or \
+          re.search( r'перемонтировать', str(message.message), re.IGNORECASE):
           print(message.date, ' - matching work description')
 
-          z = re.match( r'\u2761(\d?\d):\d\d\ ?-\ ?\d?\d:\d\d\ \d', str(message.message))
+          z = re.match( r'\u2757(\d?\d):\d\d\ ?-\ ?\d?\d:\d\d\ \d', str(message.message))
           if z and (
             z.groups()[0] == "0" or 
             z.groups()[0] == "00" or 
@@ -38,12 +44,12 @@ with TelegramClient('anon', api_id, api_hash) as client:
 #          if re.search( r'2(1|2|3)\:', str(message.message)):
 #            print(message.date, ' - convenient time')
             hash = hashlib.md5(message.message.encode('utf-8')).hexdigest()
-            print('New message hash', hash)
+            print(message.date, 'New message hash', hash)
             match_found = False
             for h in message_hashes:
-              print(h)
+              print(message.date, h)
               if hash == h:
-                print('Skipping matched hash', h, ' ', hash)
+                print(message.date, 'Skipping matched hash', h, ' ', hash)
                 match_found = True
                 break
             if match_found is False:

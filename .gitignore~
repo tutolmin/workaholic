@@ -162,4 +162,3 @@ cython_debug/
 *.session
 *.log
 *.db
-.idea/

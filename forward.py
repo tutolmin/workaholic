@@ -12,7 +12,9 @@ import hashlib
 api_id = 25315069
 api_hash = '419b7cd9f055a855ffd2f06948ab882e'
 
-replies = ['Go', 'gg', 'g', '+', '++', 'я', 'беру', 'готов', 'сделаю'];
+replies = ['Go', 'go', 'gg', 'g', '+', '++', 'я', 'беру', 'готов', 'сделаю', 'на меня', 'мне']
+
+message_hashes = []
 
 # The first parameter is the .session file name (absolute paths allowed)
 #with TelegramClient('anon', api_id, api_hash) as client:
@@ -24,11 +26,10 @@ client = TelegramClient('anon', api_id, api_hash)
 @client.on(events.NewMessage(chats=[1001417778781],pattern=r'\u2757\d?\d:\d\d\ ?-\ ?\d?\d:\d\d\ \ ?\d'))
 #@client.on(events.NewMessage(chats=[1001417778781]))
 
-message_hashes = []
-
 async def my_event_handler(event):
 #  print( event)
   if 474122935 == event.from_id.user_id:           # Alexander
+#        print('Message from Alex')
 #  if 358409707 == event.from_id.user_id or 474122935 == event.from_id.user_id:           # Valery
 #    if 'hello' in event.raw_text or 'good' in event.raw_text:
 #        await event.reply('hi!')
@@ -37,12 +38,26 @@ async def my_event_handler(event):
 #        await event.forward_to(5427745665)
         await event.forward_to(5569117599) # bot
 
-#        if re.search( r'samanelis1', str(event.raw_text), re.IGNORECASE) or \
+#        if re.search( r'CashFlow', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'SberPay', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'SberNBA', str(event.raw_text), re.IGNORECASE) or \
 #          re.search( r'bifrost1', str(event.raw_text), re.IGNORECASE) or \
 #          re.search( r'odysseus1', str(event.raw_text), re.IGNORECASE):
 #        if re.search( r'RHEL\s?\+\s?Veritas', str(event.raw_text), re.IGNORECASE):
-        if re.search( r'RHEL\s?\+\s?Veritas', str(event.raw_text), re.IGNORECASE) or \
-          re.search( r'АУ АС', str(event.raw_text), re.IGNORECASE):
+#        if re.search( r'odysseus3', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'Veritas\s?\+\s?RHEL', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'перемонтир', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'SberNBA', str(event.raw_text), re.IGNORECASE) or \
+#        if re.search( r'RHEL\s?\+\s?Veritas', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'PALM.OMS', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'караул', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'АУ АС', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'переформат', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'переустанов', str(event.raw_text), re.IGNORECASE) or \
+#          re.search( r'Garda', str(event.raw_text), re.IGNORECASE) or \
+        if re.search( r'dummy_record_1', str(event.raw_text), re.IGNORECASE) or \
+          re.search( r'АУ АС', str(event.raw_text), re.IGNORECASE) or \
+          re.search( r'dummy_record_2', str(event.raw_text), re.IGNORECASE):
 #          await event.forward_to(5569117599) # bot
           print('Matching work description')
 
@@ -56,7 +71,9 @@ async def my_event_handler(event):
             z.groups()[0] == "2" or
             z.groups()[0] == "23" or
             z.groups()[0] == "22" or
-            z.groups()[0] == "21"):
+            z.groups()[0] == "21" or
+            z.groups()[0] == "20" or
+            z.groups()[0] == "19"):
             print('Convenient time')
 #            await event.reply('go') # auto reply
 
